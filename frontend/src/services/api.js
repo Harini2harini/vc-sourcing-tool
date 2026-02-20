@@ -1,6 +1,17 @@
 import axios from 'axios';
 // Use environment variable for API URL, fallback to live Render URL for production
-const API_BASE_URL = (process.env.REACT_APP_API_URL || 'https://vc-sourcing-backend.onrender.com/api').replace(/\/$/, '') + '/';
+const RENDER_BACKEND_URL = 'https://vc-sourcing-backend.onrender.com/api';
+let API_BASE_URL = process.env.REACT_APP_API_URL || RENDER_BACKEND_URL;
+
+// Safety check: If running on a live domain (like Vercel) but API points to localhost, force Render backend
+if (typeof window !== 'undefined' &&
+  window.location.hostname !== 'localhost' &&
+  window.location.hostname !== '127.0.0.1' &&
+  API_BASE_URL.includes('localhost')) {
+  API_BASE_URL = RENDER_BACKEND_URL;
+}
+
+API_BASE_URL = API_BASE_URL.replace(/\/$/, '') + '/';
 
 const api = axios.create({
   baseURL: API_BASE_URL,
