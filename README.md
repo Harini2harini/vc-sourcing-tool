@@ -1,4 +1,5 @@
 VC Sourcing Tool
+
 📝 About
 A full-stack web app for VCs to discover and research startups. Search companies, get AI-powered insights, save to lists, and export data.
 
