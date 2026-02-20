@@ -3,18 +3,18 @@ const mockCompanies = [
   {
     id: 1,
     name: "NeuralLeap",
-    website: "https://neurallleap.ai",
+    website: "https://openai.com",
     industry: "AI",
     location: "San Francisco, CA",
     founded: "2021",
     employees: "25-50",
     description: "Building next-generation neural networks for enterprise automation",
-    logo: "https://logo.clearbit.com/google.com", // placeholder
+    logo: "https://logo.clearbit.com/openai.com",
   },
   {
     id: 2,
     name: "FinFlow",
-    website: "https://finflow.io",
+    website: "https://stripe.com",
     industry: "Fintech",
     location: "New York, NY",
     founded: "2020",
@@ -25,7 +25,7 @@ const mockCompanies = [
   {
     id: 3,
     name: "MediScan AI",
-    website: "https://mediscan.health",
+    website: "https://health.com",
     industry: "HealthTech",
     location: "Boston, MA",
     founded: "2022",
@@ -36,7 +36,7 @@ const mockCompanies = [
   {
     id: 4,
     name: "CloudCanvas",
-    website: "https://cloudcanvas.dev",
+    website: "https://aws.amazon.com",
     industry: "SaaS",
     location: "Seattle, WA",
     founded: "2019",
@@ -47,7 +47,7 @@ const mockCompanies = [
   {
     id: 5,
     name: "EcoCharge",
-    website: "https://ecocharge.tech",
+    website: "https://tesla.com",
     industry: "CleanTech",
     location: "Austin, TX",
     founded: "2021",
@@ -58,7 +58,7 @@ const mockCompanies = [
   {
     id: 6,
     name: "EduFlex",
-    website: "https://eduflex.learn",
+    website: "https://khanacademy.org",
     industry: "EdTech",
     location: "Chicago, IL",
     founded: "2020",
@@ -69,7 +69,7 @@ const mockCompanies = [
   {
     id: 7,
     name: "SecureShare",
-    website: "https://secureshare.io",
+    website: "https://cloudflare.com",
     industry: "Cybersecurity",
     location: "Washington, DC",
     founded: "2018",
@@ -80,7 +80,7 @@ const mockCompanies = [
   {
     id: 8,
     name: "DataForge",
-    website: "https://dataforge.ai",
+    website: "https://databricks.com",
     industry: "AI",
     location: "Denver, CO",
     founded: "2022",
@@ -91,7 +91,7 @@ const mockCompanies = [
   {
     id: 9,
     name: "PayRails",
-    website: "https://payrails.financial",
+    website: "https://wise.com",
     industry: "Fintech",
     location: "Miami, FL",
     founded: "2021",
@@ -102,7 +102,7 @@ const mockCompanies = [
   {
     id: 10,
     name: "GenomeLink",
-    website: "https://genomelink.bio",
+    website: "https://23andme.com",
     industry: "HealthTech",
     location: "San Diego, CA",
     founded: "2020",
@@ -113,7 +113,7 @@ const mockCompanies = [
   {
     id: 11,
     name: "BuildStack",
-    website: "https://buildstack.construction",
+    website: "https://procore.com",
     industry: "SaaS",
     location: "Atlanta, GA",
     founded: "2019",
@@ -124,7 +124,7 @@ const mockCompanies = [
   {
     id: 12,
     name: "Solaris Energy",
-    website: "https://solaris.energy",
+    website: "https://sunrun.com",
     industry: "CleanTech",
     location: "Portland, OR",
     founded: "2022",
@@ -135,7 +135,7 @@ const mockCompanies = [
   {
     id: 13,
     name: "CodeCraft",
-    website: "https://codecraft.dev",
+    website: "https://codecademy.com",
     industry: "EdTech",
     location: "Raleigh, NC",
     founded: "2021",
@@ -146,7 +146,7 @@ const mockCompanies = [
   {
     id: 14,
     name: "ShieldOps",
-    website: "https://shieldops.security",
+    website: "https://okta.com",
     industry: "Cybersecurity",
     location: "Dallas, TX",
     founded: "2020",
@@ -157,7 +157,7 @@ const mockCompanies = [
   {
     id: 15,
     name: "AgriSense",
-    website: "https://agrisense.farm",
+    website: "https://johndeere.com",
     industry: "AgTech",
     location: "Omaha, NE",
     founded: "2021",
