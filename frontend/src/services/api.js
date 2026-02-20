@@ -3,7 +3,7 @@ import axios from 'axios';
 
 // Use environment variable for API URL, fallback to localhost for development
 // Use environment variable for API URL, fallback to live Render URL for production, then localhost for development
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'https://vc-sourcing-backend.onrender.com/api';
+const API_BASE_URL = (process.env.REACT_APP_API_URL || 'https://vc-sourcing-backend.onrender.com/api').replace(/\/$/, '') + '/';
 
 const api = axios.create({
   baseURL: API_BASE_URL,
@@ -21,7 +21,8 @@ export const enrichCompany = async (website) => {
       url = 'https://' + url;
     }
 
-    const response = await api.post('/enrich/', { url });
+    // Use relative path without leading slash to combine correctly with baseURL
+    const response = await api.post('enrich/', { url });
     return response.data;
   } catch (error) {
     console.error('Enrichment error:', error);
