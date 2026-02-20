@@ -6,13 +6,13 @@ import { BookmarkIcon as BookmarkSolid } from '@heroicons/react/24/solid';
 import LoadingSpinner from '../components/LoadingSpinner';
 import mockCompanies from '../utils/mockCompanies';
 import { enrichCompany } from '../services/api';
-import { 
-  saveToList, 
-  getLists, 
-  saveNote, 
+import {
+  saveToList,
+  getLists,
+  saveNote,
   getNote,
   getEnrichmentCache,
-  saveEnrichmentCache 
+  saveEnrichmentCache
 } from '../utils/localStorage';
 
 const CompanyProfilePage = () => {
@@ -49,7 +49,7 @@ const CompanyProfilePage = () => {
     // Check if company is saved in any list
     const allLists = getLists();
     setLists(Object.keys(allLists));
-    const isCompanySaved = Object.values(allLists).some(list => 
+    const isCompanySaved = Object.values(allLists).some(list =>
       list.includes(company.id)
     );
     setIsSaved(isCompanySaved);
@@ -74,14 +74,14 @@ const CompanyProfilePage = () => {
   const handleEnrich = async () => {
     setLoading(true);
     setError(null);
-    
+
     try {
       const data = await enrichCompany(company.website);
       setEnrichmentData(data);
       // Cache the results
       saveEnrichmentCache(company.id, data);
     } catch (err) {
-      setError('Failed to enrich company data. Please try again.');
+      setError(err.message || 'Failed to enrich company data. Please try again.');
       console.error('Enrichment error:', err);
     } finally {
       setLoading(false);
@@ -136,7 +136,7 @@ const CompanyProfilePage = () => {
               </a>
             </div>
           </div>
-          
+
           {/* Save to List Button */}
           <div className="relative">
             <button
@@ -150,7 +150,7 @@ const CompanyProfilePage = () => {
               )}
               {isSaved ? 'Saved' : 'Save to List'}
             </button>
-            
+
             {/* List dropdown */}
             {showListDropdown && (
               <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-10">
