@@ -14,15 +14,23 @@ def enrich_company(request):
     """
     Endpoint to enrich company data by fetching and analyzing their website
     """
+    logger.info(f"--- Enrichment Request Started ---")
+    logger.info(f"Method: {request.method}")
+    logger.info(f"Path: {request.path}")
+    logger.info(f"Origin: {request.META.get('HTTP_ORIGIN', 'No Origin')}")
+    
     if request.method != 'POST':
-        return JsonResponse({'error': 'Only POST method is allowed'}, status=405)
+        logger.warning(f"Invalid method: {request.method}")
+        return JsonResponse({'error': f'Only POST method is allowed, got {request.method}'}, status=405)
     
     try:
         # Parse request body
         data = json.loads(request.body)
         url = data.get('url')
+        logger.info(f"Received URL: {url}")
         
         if not url:
+            logger.warning("URL missing in request body")
             return JsonResponse({'error': 'URL is required'}, status=400)
         
         # Validate URL
@@ -31,18 +39,17 @@ def enrich_company(request):
         
         logger.info(f"Enriching company from URL: {url}")
         
-        # For now, we'll use a mock response since we don't have an AI API key yet
-        # In production, you would replace this with actual AI service calls
-        
         # Mock enrichment data based on URL
         mock_data = generate_mock_enrichment(url)
+        logger.info("Enrichment successful")
         
         return JsonResponse(mock_data, status=200)
         
     except json.JSONDecodeError:
+        logger.error("Failed to decode JSON body")
         return JsonResponse({'error': 'Invalid JSON'}, status=400)
     except Exception as e:
-        logger.error(f"Enrichment error: {str(e)}")
+        logger.error(f"Enrichment error: {str(e)}", exc_info=True)
         return JsonResponse({'error': str(e)}, status=500)
 
 def generate_mock_enrichment(url):
