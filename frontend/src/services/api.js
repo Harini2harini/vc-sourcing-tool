@@ -2,7 +2,8 @@
 import axios from 'axios';
 
 // Use environment variable for API URL, fallback to localhost for development
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000/api';
+// Use environment variable for API URL, fallback to live Render URL for production, then localhost for development
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'https://vc-sourcing-backend.onrender.com/api';
 
 const api = axios.create({
   baseURL: API_BASE_URL,
@@ -24,11 +25,11 @@ export const enrichCompany = async (website) => {
     return response.data;
   } catch (error) {
     console.error('Enrichment error:', error);
-    
+
     if (error.code === 'ECONNABORTED') {
       throw new Error('Request timed out. Please try again.');
     }
-    
+
     if (error.response) {
       // The request was made and the server responded with a status code
       // that falls out of the range of 2xx
