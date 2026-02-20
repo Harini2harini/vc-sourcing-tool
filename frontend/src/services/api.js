@@ -1,8 +1,5 @@
-// frontend/src/services/api.js
 import axios from 'axios';
-
-// Use environment variable for API URL, fallback to localhost for development
-// Use environment variable for API URL, fallback to live Render URL for production, then localhost for development
+// Use environment variable for API URL, fallback to live Render URL for production
 const API_BASE_URL = (process.env.REACT_APP_API_URL || 'https://vc-sourcing-backend.onrender.com/api').replace(/\/$/, '') + '/';
 
 const api = axios.create({
@@ -10,19 +7,15 @@ const api = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
-  timeout: 10000, // 10 second timeout
+  timeout: 15000,
 });
 
 export const enrichCompany = async (website) => {
   try {
-    // Ensure URL has protocol
-    let url = website;
-    if (!url.startsWith('http://') && !url.startsWith('https://')) {
-      url = 'https://' + url;
-    }
+    const url = website.startsWith('http') ? website : `https://${website}`;
 
-    // Use relative path without leading slash to combine correctly with baseURL
-    const response = await api.post('enrich/', { url });
+    // Using absolute URL to bypass any baseURL joining inconsistencies
+    const response = await api.post(`${API_BASE_URL}enrich/`, { url });
     return response.data;
   } catch (error) {
     console.error('Enrichment error:', error);
