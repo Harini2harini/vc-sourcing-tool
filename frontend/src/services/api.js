@@ -27,21 +27,25 @@ export const enrichCompany = async (website) => {
   } catch (error) {
     console.error('Enrichment error:', error);
 
-    if (error.code === 'ECONNABORTED') {
-      throw new Error('Request timed out. Please try again.');
-    }
+    let errorMessage = 'Failed to enrich company data';
 
-    if (error.response) {
+    if (error.code === 'ECONNABORTED') {
+      errorMessage = 'Request timed out. Please try again.';
+    } else if (error.response) {
       // The request was made and the server responded with a status code
-      // that falls out of the range of 2xx
-      throw new Error(error.response.data.error || 'Server error occurred');
+      const status = error.response.status;
+      const data = error.response.data;
+      errorMessage = `Server Error (${status}): ${data.error || 'Unknown error'}`;
+      console.error(`Status: ${status}`, data);
     } else if (error.request) {
       // The request was made but no response was received
-      throw new Error('No response from server. Please check if the backend is running.');
+      errorMessage = 'No response from server. Connection refused or blocked by CORS.';
     } else {
       // Something happened in setting up the request that triggered an Error
-      throw new Error('Failed to make request. Please try again.');
+      errorMessage = error.message || 'Failed to make request. Please check your connection.';
     }
+
+    throw new Error(errorMessage);
   }
 };
 
