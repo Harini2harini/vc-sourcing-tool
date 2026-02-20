@@ -11,7 +11,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'django-insecure-your-secret-key-here-change-in-production')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DJANGO_DEBUG', 'False') == 'True'
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'vc-sourcing-backend.onrender.com', '.onrender.com']
 
@@ -102,7 +102,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
+    "https://vc-sourcing-tool.vercel.app",
 ]
 
-# If you want to allow all origins during development (not recommended for production)
-CORS_ALLOW_ALL_ORIGINS = True  # Remove this in production
+# If you want to allow all origins during development
+CORS_ALLOW_ALL_ORIGINS = True
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://vc-sourcing-backend.onrender.com",
+    "https://vc-sourcing-tool.vercel.app",
+]
